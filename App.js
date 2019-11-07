@@ -1,30 +1,30 @@
-import React, {Component} from 'react';
-import { StyleSheet, ImageBackground, TextInput, Button } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, TextInput, Button } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import About from './components/About';
 
 class Home extends Component {
   static navigationOptions = {
     title: 'Home',
   }
-  state = {
-    name: ""
-  }
+  
   handleSubmit = (e) => {
     this.setState({
-        name: e
+      name: e
     })
   }
-  goToGame = () => {
 
-  }
-
-  render(){
+  render() {
     return (
       <SafeAreaView style={style.container}>
-        <ImageBackground source={{uri : './assets/quizzB.jpg'}}>
-          <TextInput onChangeText={this.handleSubmit} placeholder="Entrez votre pseudo"></TextInput>
-          <Button title="Commencer" onPress={this.goToGame}/>
-        </ImageBackground>
+        <TextInput onChangeText={this.handleSubmit} placeholder="Entrez votre pseudo"></TextInput>
+        <Button title="Commencer" onPress={this.goToGame} />
+        <Button title="About" onPress={() => this.props.navigation.navigate('About', {
+          itemId: 86,
+          otherParam: 'anything you want here',
+        })}></Button>
       </SafeAreaView>
     );
   }
@@ -33,7 +33,7 @@ class Home extends Component {
 const AppNavigator = createStackNavigator(
   {
     Home: Home,
-    About: About,
+    About: About
   },
   {
     initialRouteName: 'Home',
@@ -48,10 +48,9 @@ const AppNavigator = createStackNavigator(
       },
     },
   }
-);
-​
+)
 const AppContainer = createAppContainer(AppNavigator);
-​
+
 export default class App extends React.Component {
   render() {
     return <AppContainer />;
