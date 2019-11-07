@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-navigation';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import About from './components/About';
+import HighScore from './components/HighScore';
 
 class Home extends Component {
   static navigationOptions = {
@@ -20,11 +21,15 @@ class Home extends Component {
     return (
       <SafeAreaView style={style.container}>
         <TextInput onChangeText={this.handleSubmit} placeholder="Entrez votre pseudo"></TextInput>
-        <Button title="Commencer" onPress={this.goToGame} />
+        <Button title="Commencer" onPress={this.goToGame} style={style.button} />
         <Button title="About" onPress={() => this.props.navigation.navigate('About', {
           itemId: 86,
           otherParam: 'anything you want here',
-        })}></Button>
+        })} style={style.container}></Button>
+        <Button title="HighScores" onPress={() => this.props.navigation.navigate('Highscore', {
+          itemId: 87,
+          otherParam: 'test',
+        })} style={style.container}></Button>
       </SafeAreaView>
     );
   }
@@ -33,7 +38,8 @@ class Home extends Component {
 const AppNavigator = createStackNavigator(
   {
     Home: Home,
-    About: About
+    About: About,
+    Highscore: HighScore
   },
   {
     initialRouteName: 'Home',
@@ -69,4 +75,10 @@ const style = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  score: {
+    fontSize: 13
+  },
+  button: {
+    fontsize: 8
+  }
 });
