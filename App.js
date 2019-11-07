@@ -9,7 +9,7 @@ class Home extends Component {
   static navigationOptions = {
     title: 'Home',
   }
-  
+
   handleSubmit = (e) => {
     this.setState({
       name: e
