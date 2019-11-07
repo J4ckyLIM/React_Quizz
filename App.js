@@ -1,6 +1,15 @@
 import React, {Component} from 'react';
 import { StyleSheet, ImageBackground, TextInput, Button } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
+import { createStore } from 'redux';
+import allReducers from './reducers/index';
+import { Provider } from 'redux-redux';
+import { useSelector } from 'react-redux';
+
+const store = createStore(
+  allReducers
+);
+
 
 class Home extends Component {
   static navigationOptions = {
@@ -54,7 +63,7 @@ const AppContainer = createAppContainer(AppNavigator);
 ​
 export default class App extends React.Component {
   render() {
-    return <AppContainer />;
+    return <Provider store={store}><AppContainer /></Provider>;
   }
 }
 
